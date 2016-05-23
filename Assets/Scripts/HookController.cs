@@ -8,9 +8,11 @@ public class HookController : MonoBehaviour {
 	public int speed;
 	public bool stop=true;
 	public bool controll=true;
+    public bool isUsed;
 	Rigidbody rb = new Rigidbody();
 	void Start () {
 		rb = GetComponent<Rigidbody> ();
+        isUsed = false;
 	}
 	
 	void Update()
@@ -49,7 +51,8 @@ public class HookController : MonoBehaviour {
 			stop = true;
 			controll=true;
 			checkUp=true;
-		}
+            isUsed = false;
+        }
 		if (col.name == "downWall") 
 		{
 			controll=false;

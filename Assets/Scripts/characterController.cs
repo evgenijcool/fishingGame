@@ -39,7 +39,7 @@ public class characterController : MonoBehaviour{
 		if ((wallLeft && move < 0) || (wallRight && move > 0))
 			k = 0;
 
-		rb.velocity = new Vector2 (move * maxSpeed * k, rb.velocity.y);
+		rb.velocity = new Vector2 (move * maxSpeed * k * (hook.stop ? 1:0) , rb.velocity.y);
 
 		if (Input.GetKey(KeyCode.UpArrow))
 		{
