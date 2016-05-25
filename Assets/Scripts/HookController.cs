@@ -9,6 +9,8 @@ public class HookController : MonoBehaviour {
 	public bool stop=true;
 	public bool controll=true;
     public bool isUsed;
+	private object currentfish;
+
 	Rigidbody rb = new Rigidbody();
 	void Start () {
 		rb = GetComponent<Rigidbody> ();
@@ -67,4 +69,19 @@ public class HookController : MonoBehaviour {
 		}
 
 	}
+
+	public object getCurrentFish(){
+		return currentfish;
+	}
+
+	public void setCurrentFish(object fish){
+		this.currentfish = fish;
+	}
+
+	public void removeCurrentFish(){
+		currentfish = null;
+	}
+
+
+
 }

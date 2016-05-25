@@ -43,11 +43,15 @@ public class characterController : MonoBehaviour{
 
 		if (Input.GetKey(KeyCode.UpArrow))
 		{
-			hook.HookUp();
+			if (!hook.isUsed) {
+				hook.HookUp ();
+			}
 		}
 		if (Input.GetKey(KeyCode.DownArrow))
 		{
-			hook.HookDown();
+			if (!hook.isUsed) {
+				hook.HookDown ();
+			}
 		}
 		if (Input.GetKey(KeyCode.Escape))
 		{

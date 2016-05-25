@@ -35,9 +35,11 @@ public class fishController : MonoBehaviour {
         {
             Debug.Log("hhoooook");
             HookController hook = ((HookController)FindObjectOfType(typeof(HookController)));
-            if (!hook.isUsed)
+
+			if (!hook.isUsed)
             {
                 hooked = true;
+				transform.position = hook.transform.position;
                 transform.Rotate(Vector3.forward, 90);
 
                 hook.isUsed = true;
@@ -53,7 +55,7 @@ public class fishController : MonoBehaviour {
             speed = startSpeed;
             transform.position = new Vector3(-55.4F, -2.7F, 9.3F);
             Sprite myFruit = Resources.Load("gg", typeof(Sprite)) as Sprite;
-            Debug.Log(myFruit.ToString());
+           // Debug.Log(myFruit.ToString());
             hooked = false;
             direction = true;
         }
