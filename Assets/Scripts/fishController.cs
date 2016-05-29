@@ -12,7 +12,7 @@ public class fishController : MonoBehaviour {
     private bool direction = false;
     private bool hooked;
     private float y;
-
+    public AudioClip soundFish;
     public Sprite[] sprites;
     
 	// Use this for initialization
@@ -70,6 +70,8 @@ public class fishController : MonoBehaviour {
         if (col.name == "upWallEffect")
         {
             GetComponent<SpriteRenderer>().color = fish.Money > 0 ? Color.green : Color.red;
+            GetComponent<AudioSource>().clip = soundFish;
+            GetComponent<AudioSource>().Play();
         }
     }
 }
