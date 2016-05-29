@@ -62,9 +62,14 @@ public class fishController : MonoBehaviour {
             transform.position = new Vector3(-55.4F, y, 9.3F);
             fish.updateStats();
             fish = ff.generateFish();
+            GetComponent<SpriteRenderer>().color = Color.white;
             GetComponent<SpriteRenderer>().sprite = sprites[fish.SpriteNumber]; 
             hooked = false;
             direction = true;
+        }
+        if (col.name == "upWallEffect")
+        {
+            GetComponent<SpriteRenderer>().color = Color.red;
         }
     }
 }
