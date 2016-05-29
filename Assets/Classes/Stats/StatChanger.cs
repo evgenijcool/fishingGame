@@ -1,4 +1,5 @@
-﻿using Classes;
+﻿using Assets.Classes.Stats;
+using Classes;
 
 namespace Assets.Classes
 {
@@ -14,7 +15,7 @@ namespace Assets.Classes
         }
         public void updateStats(Fish fish)
         {
-            Statistics.addFish(fish);
+            ProxyStatistics.instance().addFish(fish);
         }
     }
 }

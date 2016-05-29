@@ -6,6 +6,7 @@ using System.Text;
 
 namespace Classes
 {
+    [Serializable]
     class Fish
     {
         public float Speed { get; set; }
