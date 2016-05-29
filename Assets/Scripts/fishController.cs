@@ -69,7 +69,7 @@ public class fishController : MonoBehaviour {
         }
         if (col.name == "upWallEffect")
         {
-            GetComponent<SpriteRenderer>().color = Color.red;
+            GetComponent<SpriteRenderer>().color = fish.Money > 0 ? Color.green : Color.red;
         }
     }
 }

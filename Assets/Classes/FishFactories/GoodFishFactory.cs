@@ -1,10 +1,11 @@
 ﻿using System;
+using UnityEngine;
 
 namespace Classes.FishFactories
 {
     class GoodFishFactory : IFishFactory
     {
-        static Random rnd = new Random();
+        static System.Random rnd = new System.Random();
         public Fish generateFish()
         {
             Fish gFish = new Fish();
