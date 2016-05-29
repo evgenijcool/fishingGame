@@ -53,15 +53,6 @@ public class characterController : MonoBehaviour{
 				hook.HookDown ();
 			}
 		}
-		if (Input.GetKey(KeyCode.Escape))
-		{
-			Application.Quit();
-		}
-
-		if (Input.GetKey(KeyCode.R))
-		{
-			Application.LoadLevel(Application.loadedLevel);
-		}
 	}
 
 	void OnTriggerEnter(Collider col)
