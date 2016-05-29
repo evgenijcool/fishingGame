@@ -1,22 +1,31 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Classes;
+using Classes.FishFactories;
+using Assets.Classes;
 
 public class fishController : MonoBehaviour {
 
-    public float speed;
-    public int money;
-    public bool direction;
-    public bool hooked;
-    private float startSpeed;
+    private Fish fish;
+    private IFishFactory ff;
+    public bool angry;
+    private bool direction = false;
+    private bool hooked;
+    private float y;
+
+    public Sprite[] sprites;
     
 	// Use this for initialization
 	void Start () {
-        startSpeed = speed;
-	}
+        if (angry) ff = new AngryFishFactory(); else ff = new GoodFishFactory();
+        fish = ff.generateFish();
+        GetComponent<SpriteRenderer>().sprite = sprites[fish.SpriteNumber];
+        y = transform.position.y;
+    }
 	
 	// Update is called once per frame
 	void Update () {
-            transform.Translate(new Vector3(speed, 0, 0) * Time.deltaTime);
+            transform.Translate(new Vector3(fish.Speed, 0, 0) * Time.deltaTime);
     }
 
     void OnTriggerEnter(Collider col)
@@ -33,7 +42,6 @@ public class fishController : MonoBehaviour {
         }
         if (col.name == "hook")
         {
-            Debug.Log("hhoooook");
             HookController hook = ((HookController)FindObjectOfType(typeof(HookController)));
 
 			if (!hook.isUsed)
@@ -45,17 +53,16 @@ public class fishController : MonoBehaviour {
                 hook.isUsed = true;
                 hook.stop = false;
                 hook.side = false;
-                speed = ((HookController)FindObjectOfType(typeof(HookController))).speed;
+                fish.Speed = ((HookController)FindObjectOfType(typeof(HookController))).speed;
             }
         }
         if (col.name == "upWall")
         {
-            Debug.Log("wall");
             transform.Rotate(Vector3.forward, -90);
-            speed = startSpeed;
-            transform.position = new Vector3(-55.4F, -2.7F, 9.3F);
-            Sprite myFruit = Resources.Load("gg", typeof(Sprite)) as Sprite;
-           // Debug.Log(myFruit.ToString());
+            transform.position = new Vector3(-55.4F, y, 9.3F);
+            fish.updateStats();
+            fish = ff.generateFish();
+            GetComponent<SpriteRenderer>().sprite = sprites[fish.SpriteNumber]; 
             hooked = false;
             direction = true;
         }
