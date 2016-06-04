@@ -9,12 +9,18 @@ public class HookController : MonoBehaviour {
 	public bool stop=true;
 	public bool controll=true;
     public bool isUsed;
-	private object currentfish;
+
+    private const int speedUp = 20;
+    private int oldSpeed;
+
+    private GameObject currentfish;
+    public Sprite sprite;
 
 	Rigidbody rb = new Rigidbody();
 	void Start () {
 		rb = GetComponent<Rigidbody> ();
         isUsed = false;
+        oldSpeed = speed;
 	}
 	
 	void Update()
@@ -31,21 +37,29 @@ public class HookController : MonoBehaviour {
 			}
 		}
 	}
-	public void HookUp()
+    public void HookUp()
+    {
+        if (checkUp == false)
+        {
+            controll = false;
+            stop = false;
+            side = false;
+        }
+    }
+    public void hookIn()
 	{
-		if (checkUp == false) {
-			stop = false;
-			side = false;
-		}
-	}
+        
+            speed = speedUp;
+   	}
 	public void HookDown()
 	{
 		if(controll==true)
 		{
 			stop=false;
 			side=true;
-		}
-	}
+        }
+        
+    }
 	void OnTriggerEnter(Collider col)
 	{
 		if (col.name == "upWall") 
@@ -54,27 +68,30 @@ public class HookController : MonoBehaviour {
 			controll=true;
 			checkUp=true;
             isUsed = false;
+            speed = oldSpeed;
         }
 		if (col.name == "downWall") 
 		{
 			controll=false;
 			side=!side;
 		}
+  
 	}
 	void OnTriggerExit(Collider col)
 	{
-		if(col.name == "upWall")
+   
+        if (col.name == "upWall")
 		{
 			checkUp=false;
-		}
+        }
 
 	}
 
-	public object getCurrentFish(){
+	public GameObject getCurrentFish(){
 		return currentfish;
 	}
 
-	public void setCurrentFish(object fish){
+	public void setCurrentFish(GameObject fish){
 		this.currentfish = fish;
 	}
 

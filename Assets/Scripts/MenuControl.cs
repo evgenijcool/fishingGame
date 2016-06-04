@@ -16,7 +16,7 @@ public class MenuControl : MonoBehaviour {
         }
         if (name == "pauseButton")
         {
-            GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => Pause());
+            GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => Paused());
         }
         if (name == "continue")
         {
@@ -32,7 +32,7 @@ public class MenuControl : MonoBehaviour {
 
     }
 
-    private void Pause()
+    private void Paused()
     {
         if (!isShow)
         {

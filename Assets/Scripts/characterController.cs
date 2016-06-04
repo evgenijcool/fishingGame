@@ -4,6 +4,10 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class characterController : MonoBehaviour{
+
+    private int level = 1;
+    public Text leveltxt;
+
 	public float maxSpeed = 10f;
 	bool facingRight = true;
 	bool wallRight = false;
@@ -32,7 +36,7 @@ public class characterController : MonoBehaviour{
 	}
 
 	void Update(){
-
+        changeLavel();
 		timer += Time.deltaTime;
 
 		float k = 1;
@@ -53,7 +57,7 @@ public class characterController : MonoBehaviour{
 				hook.HookDown ();
 			}
 		}
-	}
+    }
 
 	void OnTriggerEnter(Collider col)
 	{
@@ -78,4 +82,34 @@ public class characterController : MonoBehaviour{
 			wallRight=false;
 		}
 	}
+
+    private void changeLavel()
+    {
+        if (score < 10000)
+        {
+            leveltxt.text = "1";
+        }
+        else if (score < 20000)
+        {
+            leveltxt.text = "2";
+        }
+        else if (score < 30000)
+        {
+            leveltxt.text = "3";
+        }
+        else if (score < 40000)
+        {
+            leveltxt.text = "4";
+        }
+        else if (score < 50000)
+        {
+            leveltxt.text = "5";
+        }
+        else {
+            leveltxt.text = "5";
+        }
+
+    }
+
+
 }
