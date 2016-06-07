@@ -1,5 +1,4 @@
-﻿
-using Assets.Classes.Stats;
+﻿using Assets.Classes.Stats;
 using Classes;
 using System.Collections.Generic;
 using System.IO;

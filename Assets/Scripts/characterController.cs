@@ -1,61 +1,51 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using Assets.Classes.Stats;
+using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 
 public class characterController : MonoBehaviour{
 
     public Text leveltxt;
-
 	public float maxSpeed = 10f;
-	bool wallRight = false;
-	bool wallLeft = false;
-	public Transform wallCheckRight;
-	public Transform wallCheckLeft;
-	public float groundRadius = 10f;
-	public float score;
-	public float move;
 	public float timer;
     public Sprite[] levelSprites;
 
-    Rigidbody rb = new Rigidbody();
-	HookController hook;
+    private bool wallRight = false;
+    private bool wallLeft = false;
+    private float move;
+    private Rigidbody rb = new Rigidbody();
+	private HookController hook;
     
-	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody> ();
 		hook = (HookController)FindObjectOfType(typeof(HookController));
 	}
 	
-	// Update is called once per frame
 	void FixedUpdate () {
-
 		move = Input.GetAxis ("Horizontal");
-
 	}
 
-	void Update(){
+    void Update()
+    {
         changeLavel();
-		timer += Time.deltaTime;
+        timer += Time.deltaTime;
 
-		float k = 1;
-		if ((wallLeft && move < 0) || (wallRight && move > 0))
-			k = 0;
+        float k = 1;
+        if ((wallLeft && move < 0) || (wallRight && move > 0))
+            k = 0;
 
-		rb.velocity = new Vector2 (move * maxSpeed * k * (hook.stop ? 1:0) , rb.velocity.y);
+        rb.velocity = new Vector2(move * maxSpeed * k * (hook.stop ? 1 : 0), rb.velocity.y);
 
-		if (Input.GetKey(KeyCode.UpArrow))
-		{
-			if (!hook.isUsed) {
-				hook.HookUp ();
-			}
-		}
-		if (Input.GetKey(KeyCode.DownArrow))
-		{
-			if (!hook.isUsed) {
-				hook.HookDown ();
-			}
-		}
+        if (!hook.isUsed)
+        {
+            if (Input.GetKey(KeyCode.UpArrow))
+            {
+                hook.HookUp();
+            }
+            if (Input.GetKey(KeyCode.DownArrow))
+            {
+                hook.HookDown();
+            }
+        }
     }
 
 	void OnTriggerEnter(Collider col)
@@ -84,6 +74,7 @@ public class characterController : MonoBehaviour{
 
     private void changeLavel()
     {
+        int score = ProxyStatistics.instance().getSum();
         if (score < 10000)
         {
             leveltxt.text = "1";

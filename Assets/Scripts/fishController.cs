@@ -1,29 +1,25 @@
 ﻿using UnityEngine;
-using System.Collections;
 using Classes;
 using Classes.FishFactories;
-using Assets.Classes;
 using UnityEngine.UI;
 
 public class fishController : MonoBehaviour {
 
-    private Fish fish;
-    private IFishFactory ff;
     public bool angry;
-    private bool direction = false;
-    private float y;
     public AudioClip soundFish;
     public Sprite[] sprites;
-
-    private bool timerOn = false;
-    private int timeNotification = 1;
-    public float starNotificationTime;
-
     public Text cointxt;
 
+    public float starNotificationTime;
+    private bool timerOn = false;
+    private int timeNotification = 1;
+
+    private float y;
+    private bool direction = false;
+    private Fish fish;
+    private IFishFactory ff;
     private GameObject hookObject;
     
-	// Use this for initialization
 	void Start () {
         if (angry) ff = new AngryFishFactory(); else ff = new GoodFishFactory();
         fish = ff.generateFish();
@@ -31,7 +27,6 @@ public class fishController : MonoBehaviour {
         y = transform.position.y;
     }
 	
-	// Update is called once per frame
 	void Update () {
         characterController charecter = ((characterController)FindObjectOfType(typeof(characterController)));
         if (timerOn) {

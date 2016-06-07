@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System;
 
 public class MenuControl : MonoBehaviour {
 
@@ -8,7 +6,7 @@ public class MenuControl : MonoBehaviour {
     private float showedMenuPosition = 0;
     private float hidedMenuPosition = 1300;
     private static bool isShow = true;
-	// Use this for initialization
+
 	void Start () {
         if (menu != null)
         {
@@ -28,7 +26,6 @@ public class MenuControl : MonoBehaviour {
         Time.timeScale = 0;
     }
 
-    // Update is called once per frame
     void Update () {
 
     }

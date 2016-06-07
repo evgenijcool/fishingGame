@@ -1,31 +1,24 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class HookController : MonoBehaviour {
-	
 	public bool side = false;
-	public bool checkUp=true;
 	public int speed;
 	public bool stop=true;
 	public bool controll=true;
     public bool isUsed;
+    public Sprite sprite;
 
     private const int speedUp = 20;
     private int oldSpeed;
-
-    private GameObject currentfish;
-    public Sprite sprite;
-
-	Rigidbody rb = new Rigidbody();
+    private bool checkUp = true;
+    
 	void Start () {
-		rb = GetComponent<Rigidbody> ();
         isUsed = false;
         oldSpeed = speed;
 	}
 	
 	void Update()
 	{
-
 		if (!stop) 
 		{
 			if (side) 
@@ -46,11 +39,12 @@ public class HookController : MonoBehaviour {
             side = false;
         }
     }
+
     public void hookIn()
 	{
-        
-            speed = speedUp;
+        speed = speedUp;
    	}
+
 	public void HookDown()
 	{
 		if(controll==true)
@@ -58,8 +52,8 @@ public class HookController : MonoBehaviour {
 			stop=false;
 			side=true;
         }
-        
     }
+
 	void OnTriggerEnter(Collider col)
 	{
 		if (col.name == "upWall") 
@@ -77,28 +71,12 @@ public class HookController : MonoBehaviour {
 		}
   
 	}
+
 	void OnTriggerExit(Collider col)
 	{
-   
         if (col.name == "upWall")
 		{
 			checkUp=false;
         }
-
 	}
-
-	public GameObject getCurrentFish(){
-		return currentfish;
-	}
-
-	public void setCurrentFish(GameObject fish){
-		this.currentfish = fish;
-	}
-
-	public void removeCurrentFish(){
-		currentfish = null;
-	}
-
-
-
 }
