@@ -7,7 +7,7 @@ using System.Text;
 namespace Classes
 {
     [Serializable]
-    class Fish
+    abstract class Fish
     {
         public float Speed { get; set; }
         public int Money { get; set; }

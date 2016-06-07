@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using Assets.Classes.Fishes;
 
 namespace Classes.FishFactories
 {
@@ -8,7 +7,7 @@ namespace Classes.FishFactories
         static System.Random rnd = new System.Random();
         public Fish generateFish()
         {
-            Fish aFish = new Fish();
+            Fish aFish = new AngryFish();
             aFish.Money = -1 * rnd.Next(1, 9) * 100;
             aFish.Speed = rnd.Next(250, 350) / 10.0F;
             aFish.SpriteNumber = rnd.Next(0, 2);
