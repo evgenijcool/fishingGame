@@ -11,7 +11,6 @@ public class fishController : MonoBehaviour {
     private IFishFactory ff;
     public bool angry;
     private bool direction = false;
-    private bool hooked;
     private float y;
     public AudioClip soundFish;
     public Sprite[] sprites;
@@ -64,7 +63,6 @@ public class fishController : MonoBehaviour {
                 hook.hookIn();
                 hookObject = col.gameObject;
                 hookObject.GetComponent<SpriteRenderer>().sprite = null;
-                hooked = true;
 				transform.position = hook.transform.position;
                 transform.Rotate(Vector3.forward, 90);
                 hook.isUsed = true;
@@ -84,8 +82,7 @@ public class fishController : MonoBehaviour {
             HookController hook = ((HookController)FindObjectOfType(typeof(HookController)));
 
             hookObject.GetComponent<SpriteRenderer>().sprite = hook.sprite;
-
-            hooked = false;
+            
             direction = true;
 
         }

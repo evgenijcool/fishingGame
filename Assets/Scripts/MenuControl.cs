@@ -25,6 +25,7 @@ public class MenuControl : MonoBehaviour {
         if (name == "exit") {
             GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => Exit());
         }
+        Time.timeScale = 0;
     }
 
     // Update is called once per frame
@@ -36,7 +37,6 @@ public class MenuControl : MonoBehaviour {
     {
         if (!isShow)
         {
-            Debug.Log("Pause");
             Time.timeScale = 0;
             show();
             isShow = true;
@@ -46,7 +46,6 @@ public class MenuControl : MonoBehaviour {
     private void Continue() {
         if (isShow)
         {
-            Debug.Log("Continue");
             Time.timeScale = 1;
             hide();
             isShow = false;
@@ -58,12 +57,10 @@ public class MenuControl : MonoBehaviour {
     }
 
     private void show() {
-        Debug.Log(menu.GetComponent<RectTransform>().localPosition.ToString());
         menu.GetComponent<RectTransform>().localPosition = new Vector3(menu.GetComponent<RectTransform>().localPosition.x, showedMenuPosition, menu.GetComponent<RectTransform>().localPosition.z);
     }
 
     private void hide() {
-        Debug.Log(menu.GetComponent<RectTransform>().localPosition.ToString());
         menu.GetComponent<RectTransform>().localPosition = new Vector3(menu.GetComponent<RectTransform>().localPosition.x, hidedMenuPosition, menu.GetComponent<RectTransform>().localPosition.z);
     }
 

@@ -5,23 +5,22 @@ using UnityEngine.EventSystems;
 
 public class characterController : MonoBehaviour{
 
-    private int level = 1;
     public Text leveltxt;
 
 	public float maxSpeed = 10f;
-	bool facingRight = true;
 	bool wallRight = false;
 	bool wallLeft = false;
-	bool move_left= false;
-	bool move_right= false; 
 	public Transform wallCheckRight;
 	public Transform wallCheckLeft;
 	public float groundRadius = 10f;
 	public float score;
 	public float move;
 	public float timer;
-	Rigidbody rb = new Rigidbody();
+    public Sprite[] levelSprites;
+
+    Rigidbody rb = new Rigidbody();
 	HookController hook;
+    
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody> ();
@@ -88,28 +87,22 @@ public class characterController : MonoBehaviour{
         if (score < 10000)
         {
             leveltxt.text = "1";
+            GetComponent<SpriteRenderer>().sprite = levelSprites[0];
         }
         else if (score < 20000)
         {
             leveltxt.text = "2";
+            GetComponent<SpriteRenderer>().sprite = levelSprites[1];
         }
         else if (score < 30000)
         {
             leveltxt.text = "3";
+            GetComponent<SpriteRenderer>().sprite = levelSprites[2];
         }
-        else if (score < 40000)
+        else
         {
             leveltxt.text = "4";
+            GetComponent<SpriteRenderer>().sprite = levelSprites[3];
         }
-        else if (score < 50000)
-        {
-            leveltxt.text = "5";
-        }
-        else {
-            leveltxt.text = "5";
-        }
-
     }
-
-
 }
